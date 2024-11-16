@@ -21,11 +21,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle
+          cache: maven
       - name: Build, unit tests and integration tests
         run: |
-          chmod +x gradlew
-          ./gradlew build
+          chmod +x mvnw
+          ./mvnw clean install
       - name: Code vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -64,12 +64,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle
+          cache: maven
       - name: Build container image
         run: |
           chmod +x mvnw
-          ./gradlew bootBuildImage \
-            --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          ./mvnw spring-boot:build-image -Dspring-boot.build-image.publish=true
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
