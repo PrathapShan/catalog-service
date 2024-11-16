@@ -44,3 +44,14 @@ minikube stop
 install grype (https://github.com/anchore/grype)
 
 curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+
+running postgres database in docker container.
+
+docker run -d --name polar-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=polardb_catalog -p 5432:5432 postgres:14.4
+
+remove running container
+>docker rm -fv polar-postgres
+> 
+Running tests from command line using maven
+> mvnw -Dtest=BookRepositoryJdbcTests test
+> mvnw -Dtest=CatalogServiceApplicationTests test

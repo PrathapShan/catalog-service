@@ -1,10 +1,5 @@
 package com.polarbookshop.catalogservice.domain;
 
-/**
- * @author Prathap S
- */
-
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,17 +31,22 @@ public class BookService {
         bookRepository.deleteByIsbn(isbn);
     }
 
-    public Book editBookDetails(String isbn, Book book) {
-        return bookRepository.findByIsbn(isbn)
-                .map(existingBook -> {
-                    var bookToUpdate = new Book(
-                            existingBook.isbn(),
-                            book.title(),
-                            book.author(),
-                            book.price());
-                    return bookRepository.save(bookToUpdate);
-                })
-                .orElseGet(() -> addBookToCatalog(book));
-    }
+	public Book editBookDetails(String isbn, Book book) {
+		return bookRepository.findByIsbn(isbn)
+				.map(existingBook -> {
+					var bookToUpdate = new Book(
+							existingBook.id(),
+							existingBook.isbn(),
+							book.title(),
+							book.author(),
+							book.price(),
+							book.publisher(),
+							existingBook.createdDate(),
+							existingBook.lastModifiedDate(),
+							existingBook.version());
+					return bookRepository.save(bookToUpdate);
+				})
+				.orElseGet(() -> addBookToCatalog(book));
+	}
 
 }

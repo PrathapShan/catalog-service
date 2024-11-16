@@ -1,8 +1,5 @@
 package com.polarbookshop.catalogservice.web;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
 import com.polarbookshop.catalogservice.domain.BookNotFoundException;
 import com.polarbookshop.catalogservice.domain.BookService;
 import org.junit.jupiter.api.Test;
@@ -15,10 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-/**
- * @author Prathap S
- */
 
 @WebMvcTest(BookController.class)
 class BookControllerMvcTests {
