@@ -26,7 +26,8 @@ $ kubectl apply -f k8s/deployment.yml
 $ kubectl logs deployment.apps/catalog-service
 
 # 4 - Create Service (ClusterIP) for catalog service
-$ E:\ws\ws-spring-cloud\cloud-native-spring-in-action-sb-3-main\Chapter07\07-end\catalog-service>kubectl apply -f  k8s/service.yml
+$ cd E:\ws\ws-spring-cloud\cloud-native-spring-in-action-sb-3-main\Chapter07\07-end\catalog-service
+$ kubectl apply -f  k8s/service.yml
 
 $ kubectl get all -l app=catalog-service
 
@@ -52,6 +53,9 @@ $ kubectl delete -f services
 # 8 stop polar
 
 $ minikube stop --profile polar
+
+# 9 Validate kubernetes yaml
+$ kubeconform --strict -d k8s 
 
 # Other commands
 kubectl delete  service/catalog-service
